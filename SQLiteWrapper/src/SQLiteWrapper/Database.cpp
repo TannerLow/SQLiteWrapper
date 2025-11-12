@@ -9,7 +9,7 @@ namespace sql {
         }
     }
 
-    OpenResult Database::open(const fs::path& filepath) {
+    Database::OpenResult Database::open(const fs::path& filepath) {
         OpenResult result;
 
         if (sqlite3_open(filepath.u8string().c_str(), &result.db.db) != SQLITE_OK) {

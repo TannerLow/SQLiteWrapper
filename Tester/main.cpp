@@ -4,7 +4,7 @@
 
 int main() {
 
-	sql::OpenResult opened = sql::Database::open("test.db");
+	sql::Database::OpenResult opened = sql::Database::open("test.db");
 	if (not opened.successful) {
 		std::cout << opened.error << std::endl;
 		return EXIT_FAILURE;

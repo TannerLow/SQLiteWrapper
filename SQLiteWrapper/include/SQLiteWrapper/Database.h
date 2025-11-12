@@ -9,12 +9,14 @@ namespace fs = std::filesystem;
 
 namespace sql {
 
-    struct OpenResult;
-
     class Database {
+    public:
+        struct OpenResult;
+
     public:
         sqlite3* db = nullptr;
 
+    public:
         static OpenResult open(const fs::path& filepath);
 
         Database() = default;
@@ -29,7 +31,7 @@ namespace sql {
         Statement::CreateResult prepare(const std::string& sql);
     };
 
-    struct OpenResult {
+    struct Database::OpenResult {
         bool successful;
         Database db;
         std::string error;

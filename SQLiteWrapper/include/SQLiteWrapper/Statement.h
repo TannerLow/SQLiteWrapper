@@ -11,9 +11,11 @@ namespace sql {
         struct CreateResult;
         struct StepResult;
 
+    public:
         sqlite3_stmt* stmt = nullptr;
         sqlite3* db = nullptr;
         
+    public:
         static CreateResult create(sqlite3* db, const std::string& sql);
 
         Statement() = default;
