@@ -1,0 +1,4 @@
+<Project>
+  <Import Project="$(MSBuildThisFileDirectory)conan\conandeps.props"
+          Condition="Exists('$(MSBuildThisFileDirectory)conan\conandeps.props')" />
+</Project>

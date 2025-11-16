@@ -1,4 +1,5 @@
 #include <SQLiteWrapper/Statement.h>
+#include <O2Profiler/Profiler.h>
 
 namespace sql {
 
@@ -66,7 +67,7 @@ namespace sql {
     std::optional<std::string> Statement::bind(int idx, const std::string& value) {
         std::optional<std::string> result;
 
-        if (sqlite3_bind_text(stmt, idx, value.c_str(), value.size(), SQLITE_TRANSIENT) != SQLITE_OK) {
+        if (sqlite3_bind_text(stmt, idx, value.c_str(), (int)value.size(), SQLITE_TRANSIENT) != SQLITE_OK) {
             result = sqlite3_errmsg(db);
         }
 
@@ -84,6 +85,8 @@ namespace sql {
     }
 
     Statement::StepResult Statement::step() {
+        PROFILE_SCOPE(__FUNCTION__);
+
         StepResult result;
         result.successful = true;
 

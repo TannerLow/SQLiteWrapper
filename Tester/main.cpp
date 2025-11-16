@@ -1,8 +1,10 @@
 #include <SQLiteWrapper/Database.h>
+#include <O2Profiler/Profiler.h>
 
 #include <iostream>
 
 int main() {
+	PROFILE_BEGIN("Run All Test Code", _all_tests);
 
 	sql::Database::OpenResult opened = sql::Database::open("test.db");
 	if (not opened.successful) {
@@ -101,6 +103,9 @@ int main() {
 			std::cout << std::endl;
 		}
 	} while (not selectStep.done);
+
+	PROFILE_END(_all_tests);
+	PROFILE_REPORT();
 
 	return 0;
 }
